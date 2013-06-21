@@ -187,8 +187,11 @@ void DotControlFlowGraph::foundFunctionCall(const QStringList &sourceContainers,
 
 const QColor& DotControlFlowGraph::colorFromQualifiedIdentifier(const QString &label)
 {
-    if (m_colorMap.contains(label.split("::")[0]))
-        return m_colorMap[label.split("::")[0]];
+    QString key = label.split("::")[0];
+    if (m_colorMap.contains(key))
+        return m_colorMap[key];
     else
-        return m_colorMap[label.split("::")[0]] = QColor::fromHsv(qrand() % 256, 255, 190);
+        return m_colorMap[key] = QColor::fromHsl(qrand() % 256, 255, 190);
 }
+
+// kate: space-indent on;indent-width 4;replace-tabs on
